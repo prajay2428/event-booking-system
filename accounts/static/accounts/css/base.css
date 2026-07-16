@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css?family=Muli");
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Muli", sans-serif;
+    font-weight: normal;
+}
+
+p {
+    line-height: 1.8;
+}
+
+a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #1d4ed8;
+}
+
+#header {
+    padding: 10px 100px;
+    background: #2563eb;
+    color: #ffffff;
+    border-bottom: 4px solid #60a5fa;
+    overflow: auto;
+}
+
+#header .logo {
+    float: left;
+    margin-right: 10%;
+    font-family: "Muli", sans-serif;
+    color: #ffffff;
+    font-size: 22px;
+}
+
+#header ul.menu {
+    float: left;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#header ul.menu li {
+    float: left;
+    padding: 4px 10px;
+}
+
+#header ul.menu li.selected a {
+    color: #bfdbfe;
+    font-weight: bold;
+}
+
+#header a {
+    color: #dbeafe;
+}
+
+#header a:hover {
+    color: #ffffff;
+}
+
+#header .user {
+    float: right;
+    padding-top: 4px;
+}
+
+#header .user form {
+    display: inline;
+}
+
+#header .user button {
+    padding: 0;
+    background: none;
+    color: #dbeafe;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+}
+
+#header .user button:hover {
+    color: #ffffff;
+}
+
+#content {
+    padding: 30px 100px;
+}

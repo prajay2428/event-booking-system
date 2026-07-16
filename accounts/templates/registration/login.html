@@ -1,0 +1,21 @@
+{% include "base.html" %}
+{% block title %} Log-in {% endblock %}
+
+{% block content %}
+    {% if form.erros %}
+        <p> Your username and password did not match. Please try again</p>
+    {% else %}
+        <p> please use the form to log in : </p>
+
+    {% endif %}
+
+    <form action = "{% url 'login' %}" method = "post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type = "hidden" name = "next" value = " {{next}} " />
+       <p><input type ="submit" value = "login"/></p>
+       </form>
+
+
+
+{% endblock %}
