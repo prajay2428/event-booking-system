@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'cart/css/detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="cart-page">
+    <div class="cart-header">
+        <p class="eyebrow">Your selection</p>
+        <h1>Your Cart</h1>
+        <p>Review your selected seats before continuing to checkout.</p>
+    </div>
+
+    {% if cart %}
+        <div class="cart-layout">
+
+            <div class="cart-items">
+                {% for item in cart %}
+                    <article class="cart-item">
+
+                        <div class="seat-icon">
+                            {{ item.seat.name }}
+                        </div>
+
+                        <div class="item-details">
+                            <h2>Seat {{ item.seat.name }}</h2>
+                            <p>Movie ticket</p>
+                        </div>
+
+                        <p class="item-price">
+                            ₹{{ item.price }}
+                        </p>
+
+                        <form
+                            action="{% url 'cart:cart_remove' item.seat.id %}"
+                            method="post"
+                            class="remove-form"
+                        >
+                            {% csrf_token %}
+                            <button type="submit" class="remove-button">
+                                Remove
+                            </button>
+                        </form>
+
+                    </article>
+                {% endfor %}
+            </div>
+
+            <aside class="cart-summary">
+                <h2>Order Summary</h2>
+
+                <div class="summary-row">
+                    <span>Selected seats</span>
+                    <span>{{ cart|length }}</span>
+                </div>
+
+                <div class="summary-row total-row">
+                    <span>Total</span>
+                    <strong>₹{{ cart.get_total_cost }}</strong>
+                </div>
+
+                <a href="#" class="checkout-button">
+                    Proceed to Checkout
+                </a>
+
+                <a href="#" class="continue-link">
+                    Continue selecting seats
+                </a>
+            </aside>
+
+        </div>
+    {% else %}
+        <div class="empty-cart">
+            <h2>Your cart is empty</h2>
+            <p>Select seats from a show to add them to your cart.</p>
+            <a href="{% url 'movies:movie_list' %}">
+                Browse Movies
+            </a>
+        </div>
+    {% endif %}
+</section>
+
+{% endblock %}

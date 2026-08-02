@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     
     'accounts.apps.AccountsConfig',
+    'cart.apps.CartConfig',
     'movies.apps.MoviesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -143,3 +144,4 @@ AUTHENTICATION_BACKENDS = [
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
 
+CART_SESSION_ID ='cart'

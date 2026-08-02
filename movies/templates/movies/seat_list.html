@@ -36,9 +36,11 @@
                     Already Booked
                 </button>
             {% else %}
-                <a href="{% url 'movies:book_seat' show.slug seat.id %}" class="book-btn">
-                    Book Now
-                </a>
+                
+                <form method = "post" action = "{% url "cart:cart_add" seat.id show.id %}" >
+                     {% csrf_token %}
+                    <input type="submit" value = "book now" />
+                    </form>
             {% endif %}
 
         </div>

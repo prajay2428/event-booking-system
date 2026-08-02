@@ -1,0 +1,249 @@
+.cart-page {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+}
+
+.cart-header {
+    margin-bottom: 32px;
+}
+
+.cart-header .eyebrow {
+    margin: 0 0 6px;
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.cart-header h1 {
+    margin: 0 0 10px;
+    color: #111827;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.cart-header > p:last-child {
+    margin: 0;
+    color: #64748b;
+}
+
+.cart-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 30px;
+    align-items: start;
+}
+
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr) auto auto;
+    gap: 18px;
+    align-items: center;
+
+    padding: 18px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.06);
+}
+
+.seat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 58px;
+    height: 58px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    border: 2px solid #93c5fd;
+    border-radius: 12px;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.item-details h2 {
+    margin: 0 0 5px;
+    color: #111827;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.item-details p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.item-price {
+    margin: 0;
+    color: #111827;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.remove-form {
+    margin: 0;
+}
+
+.remove-button {
+    padding: 8px 13px;
+    background: #ffffff;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+    border-radius: 7px;
+
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.remove-button:hover {
+    background: #fef2f2;
+    border-color: #fca5a5;
+}
+
+.cart-summary {
+    position: sticky;
+    top: 25px;
+
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+}
+
+.cart-summary h2 {
+    margin: 0 0 22px;
+    color: #111827;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px 0;
+    color: #64748b;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.total-row {
+    margin-top: 8px;
+    padding-top: 18px;
+    color: #111827;
+    border-bottom: none;
+    font-size: 18px;
+}
+
+.total-row strong {
+    font-size: 23px;
+}
+
+.checkout-button {
+    display: block;
+    margin-top: 22px;
+    padding: 13px 18px;
+
+    background: #2563eb;
+    color: #ffffff;
+    border-radius: 9px;
+
+    font-weight: 700;
+    text-align: center;
+}
+
+.checkout-button:hover {
+    background: #1d4ed8;
+    color: #ffffff;
+}
+
+.continue-link {
+    display: block;
+    margin-top: 16px;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.continue-link:hover {
+    color: #2563eb;
+}
+
+.empty-cart {
+    padding: 60px 25px;
+    background: #ffffff;
+    border: 1px dashed #cbd5e1;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.empty-cart h2 {
+    margin: 0 0 10px;
+    color: #111827;
+}
+
+.empty-cart p {
+    margin: 0 0 22px;
+    color: #64748b;
+}
+
+.empty-cart a {
+    display: inline-block;
+    padding: 11px 18px;
+    background: #2563eb;
+    color: #ffffff;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.empty-cart a:hover {
+    background: #1d4ed8;
+    color: #ffffff;
+}
+
+@media (max-width: 800px) {
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-summary {
+        position: static;
+    }
+}
+
+@media (max-width: 560px) {
+    .cart-header h1 {
+        font-size: 29px;
+    }
+
+    .cart-item {
+        grid-template-columns: 52px minmax(0, 1fr);
+    }
+
+    .seat-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .item-price {
+        grid-column: 2;
+    }
+
+    .remove-form {
+        grid-column: 2;
+    }
+}
