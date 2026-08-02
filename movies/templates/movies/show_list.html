@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Shows{% endblock %}
+
+{% block extra_css %}
+<link
+    rel="stylesheet"
+    href="{% static 'movies/css/show_list.css' %}"
+>
+{% endblock %}
+
+{% block content %}
+
+<div class="shows-container">
+
+    <div class="shows-header">
+        <h1>{{ shows.0.movie }}</h1>
+        <p>Select a theatre and show timing.</p>
+    </div>
+
+    <div class="shows-grid">
+
+        {% for show in shows %}
+        <div class="show-card">
+
+            <div class="theatre-name">
+                {{ show.theatre }}
+            </div>
+
+            <div class="show-info">
+
+                <div class="info-item">
+                    <span class="label">Date</span>
+                    <span>{{ show.date|date:"d M Y" }}</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="label">Time</span>
+                    <span>{{ show.time }}</span>
+                </div>
+
+            </div>
+
+            <a href="{% url 'movies:seat_list' show.slug %}" class="book-button">
+                Book Now
+            </a>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

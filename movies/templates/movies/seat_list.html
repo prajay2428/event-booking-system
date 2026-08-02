@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Select Seats{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'movies/css/seat_list.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="seat-page">
+
+    <div class="show-info">
+        <h1>{{ show.movie.title }}</h1>
+        <p>{{ theatre.name }}</p>
+        <p>{{ show.date }} • {{ show.time }}</p>
+    </div>
+
+    <div class="screen">
+        <div class="screen-line"></div>
+        <p>SCREEN</p>
+    </div>
+
+    <div class="seat-grid">
+
+        {% for seat in seats %}
+
+        <div class="seat-card">
+
+            <h3>{{ seat.name }}</h3>
+            <p class="price">₹{{ seat.price }}</p>
+
+            {% if seat.id in booked_seats %}
+                <button class="booked-btn" disabled>
+                    Already Booked
+                </button>
+            {% else %}
+                <a href="{% url 'movies:book_seat' show.slug seat.id %}" class="book-btn">
+                    Book Now
+                </a>
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

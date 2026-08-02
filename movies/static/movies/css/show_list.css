@@ -1,0 +1,103 @@
+.shows-container{
+    max-width:1100px;
+    margin:50px auto;
+    padding:0 20px;
+}
+
+.shows-header{
+    margin-bottom:40px;
+}
+
+.shows-header h1{
+    font-size:2.3rem;
+    margin-bottom:8px;
+}
+
+.shows-header p{
+    color:#777;
+    font-size:1rem;
+}
+
+.shows-grid{
+    display:grid;
+    gap:25px;
+}
+
+.show-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:#fff;
+    border-radius:14px;
+    padding:25px 30px;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+    transition:.25s;
+}
+
+.show-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 28px rgba(0,0,0,.12);
+}
+
+.theatre-name{
+    font-size:1.3rem;
+    font-weight:600;
+    width:250px;
+}
+
+.show-info{
+    display:flex;
+    gap:50px;
+}
+
+.info-item{
+    display:flex;
+    flex-direction:column;
+}
+
+.label{
+    color:#888;
+    font-size:.8rem;
+    margin-bottom:6px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.book-button{
+    background:#e50914;
+    color:white;
+    text-decoration:none;
+    padding:12px 28px;
+    border-radius:8px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.book-button:hover{
+    background:#c40812;
+}
+
+@media(max-width:768px){
+
+    .show-card{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+    }
+
+    .theatre-name{
+        width:100%;
+    }
+
+    .show-info{
+        gap:30px;
+    }
+
+    .book-button{
+        width:100%;
+        text-align:center;
+    }
+
+}

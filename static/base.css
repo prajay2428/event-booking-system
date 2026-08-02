@@ -1,9 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Muli");
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: Helvetica, Arial, sans-serif;
+    background: #f8fafc;
+    color: #1f2937;
 }
 
 h1,
@@ -29,92 +35,115 @@ a:hover {
     color: #1d4ed8;
 }
 
+/* ---------- Header ---------- */
+
 #header {
-    padding: 10px 100px;
+    min-height: 64px;
+    padding: 12px 8%;
     background: #2563eb;
     color: #ffffff;
     border-bottom: 4px solid #60a5fa;
-    overflow: auto;
+
+    display: flex;
+    align-items: center;
+    gap: 40px;
 }
 
 #header .logo {
-    float: left;
-    margin-right: 10%;
-    font-family: "Muli", sans-serif;
     color: #ffffff;
+    font-family: "Muli", sans-serif;
     font-size: 22px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+#header nav {
+    flex: 1;
 }
 
 #header ul.menu {
-    float: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-#header ul.menu li {
-    float: left;
-    padding: 4px 10px;
+#header ul.menu li a {
+    display: block;
+    padding: 8px 12px;
+    color: #dbeafe;
+    border-radius: 6px;
+}
+
+#header ul.menu li a:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
 }
 
 #header ul.menu li.selected a {
-    color: #bfdbfe;
-    font-weight: bold;
-}
-
-#header a {
-    color: #dbeafe;
-}
-
-#header a:hover {
     color: #ffffff;
+    background: rgba(255, 255, 255, 0.2);
 }
 
 #header .user {
-    float: right;
-    padding-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    white-space: nowrap;
+}
+
+#header .user a {
+    color: #ffffff;
 }
 
 #header .user form {
     display: inline;
+    margin: 0;
 }
 
 #header .user button {
-    padding: 0;
-    background: none;
-    color: #dbeafe;
-    border: none;
+    padding: 7px 12px;
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #bfdbfe;
+    border-radius: 6px;
     font: inherit;
     cursor: pointer;
 }
 
 #header .user button:hover {
-    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
 }
 
+/* ---------- Main content ---------- */
+
 #content {
-    padding: 30px 100px;
+    width: min(1200px, 90%);
+    margin: 0 auto;
+    padding: 30px 0;
 }
 
 /* ---------- Messages ---------- */
 
 ul.messages {
-    list-style: none;
-    margin: 20px 0;
+    width: min(1200px, 90%);
+    margin: 20px auto 0;
     padding: 0;
+    list-style: none;
 }
 
 ul.messages li {
     position: relative;
-    padding: 14px 18px;
     margin-bottom: 12px;
-    border-radius: 8px;
+    padding: 14px 45px 14px 18px;
     border-left: 6px solid;
+    border-radius: 8px;
     font-size: 15px;
     font-weight: 500;
 }
-
-/* Success */
 
 ul.messages li.success {
     background: #dcfce7;
@@ -122,15 +151,11 @@ ul.messages li.success {
     border-color: #22c55e;
 }
 
-/* Error */
-
 ul.messages li.error {
     background: #fee2e2;
     color: #991b1b;
     border-color: #ef4444;
 }
-
-/* Warning */
 
 ul.messages li.warning {
     background: #fef3c7;
@@ -138,15 +163,11 @@ ul.messages li.warning {
     border-color: #f59e0b;
 }
 
-/* Info */
-
 ul.messages li.info {
     background: #dbeafe;
     color: #1e40af;
     border-color: #3b82f6;
 }
-
-/* Debug */
 
 ul.messages li.debug {
     background: #e5e7eb;
@@ -154,19 +175,34 @@ ul.messages li.debug {
     border-color: #6b7280;
 }
 
-/* Close button */
-
 ul.messages li .close {
     position: absolute;
-    right: 15px;
     top: 50%;
+    right: 15px;
     transform: translateY(-50%);
     color: inherit;
-    text-decoration: none;
-    font-weight: bold;
     font-size: 18px;
+    font-weight: bold;
 }
 
 ul.messages li .close:hover {
     opacity: 0.7;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 750px) {
+    #header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    #header ul.menu {
+        flex-wrap: wrap;
+    }
+
+    #header .user {
+        flex-wrap: wrap;
+    }
 }

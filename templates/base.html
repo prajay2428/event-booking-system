@@ -1,0 +1,86 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Movie Booking{% endblock %}</title>
+
+    <link
+        href="{% static 'base.css' %}"
+        rel="stylesheet"
+    >
+
+    {% block extra_css %}
+    {% endblock %}
+</head>
+
+<body>
+    <header id="header">
+        <a href="{% url 'movies:movie_list' %}" class="logo">
+            Movie Booking
+        </a>
+
+        <nav>
+            <ul class="menu">
+                <li {% if section == "movies" %}class="selected"{% endif %}>
+                    <a href="{% url 'movies:movie_list' %}">
+                        Movies
+                    </a>
+                </li>
+
+                <li {% if section == "shows" %}class="selected"{% endif %}>
+                    <a href="#">
+                        Shows
+                    </a>
+                </li>
+
+                {% if request.user.is_authenticated %}
+                    <li {% if section == "bookings" %}class="selected"{% endif %}>
+                        <a href="#">
+                            My Bookings
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+
+        <div class="user">
+            {% if request.user.is_authenticated %}
+                <span>
+                    Hello,
+                    {{ request.user.first_name|default:request.user.username }}
+                </span>
+
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+    </header>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">
+                    {{ message }}
+                    <a href="#" class="close">&times;</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <main id="content">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% block extra_js %}
+    {% endblock %}
+</body>
+</html>

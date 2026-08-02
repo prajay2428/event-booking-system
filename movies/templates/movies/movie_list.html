@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Movies{% endblock %}
+
+{% block extra_css %}
+    <link
+        rel="stylesheet"
+        href="{% static 'movies/css/movie_list.css' %}"
+    >
+{% endblock %}
+
+{% block content %}
+
+<section class="movies-section">
+    <div class="movies-heading">
+        <p class="eyebrow">Now showing</p>
+        <h1>Explore movies</h1>
+        <p>Choose a movie to view available shows and book your seats.</p>
+    </div>
+
+    <div class="movie-grid">
+        {% for movie in movies %}
+            <article class="movie-card">
+
+                <div class="poster-wrapper">
+                    {% if movie.poster %}
+                        <img
+                            class="movie-poster"
+                            src="{{ movie.poster.url }}"
+                            alt="{{ movie.title }} poster"
+                        >
+                    {% else %}
+                        <div class="poster-placeholder">
+                            No poster available
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="movie-details">
+                    <h2>{{ movie.title }}</h2>
+
+                    <p class="movie-director">
+                        Directed by {{ movie.director }}
+                    </p>
+
+                    <p class="movie-release-date">
+                        Released {{ movie.release_date|date:"d M Y" }}
+                    </p>
+
+                    <a href="{% url "movies:show_list" movie.slug %}" class="view-shows-button">
+                        View shows
+                    </a>
+                </div>
+
+            </article>
+        {% empty %}
+            <div class="no-movies">
+                <h2>No movies available</h2>
+                <p>Movies added through the admin will appear here.</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
