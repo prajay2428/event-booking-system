@@ -206,3 +206,46 @@ ul.messages li .close:hover {
         flex-wrap: wrap;
     }
 }
+/* ---------- Cart Link ---------- */
+
+.cart-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 14px;
+
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+
+    color: #fff !important;
+    font-weight: 600;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+.cart-link:hover {
+    background: rgba(255, 255, 255, 0.24);
+    color: #fff !important;
+    transform: translateY(-1px);
+}
+
+.cart-count {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+
+    background: #ef4444;
+    border-radius: 999px;
+
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: bold;
+}

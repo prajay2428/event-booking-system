@@ -4,7 +4,10 @@
 {% block title %}Select Seats{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'movies/css/seat_list.css' %}">
+<link
+    rel="stylesheet"
+    href="{% static 'movies/css/seat_list.css' %}"
+>
 {% endblock %}
 
 {% block content %}
@@ -26,28 +29,104 @@
 
         {% for seat in seats %}
 
-        <div class="seat-card">
+            <div class="seat-card">
 
-            <h3>{{ seat.name }}</h3>
-            <p class="price">₹{{ seat.price }}</p>
+                <h3>{{ seat.name }}</h3>
 
-            {% if seat.id in booked_seats %}
-                <button class="booked-btn" disabled>
-                    Already Booked
-                </button>
-            {% else %}
-                
-                <form method = "post" action = "{% url "cart:cart_add" seat.id show.id %}" >
-                     {% csrf_token %}
-                    <input type="submit" value = "book now" />
+                <p class="price">
+                    ₹{{ seat.price }}
+                </p>
+
+                {% if seat.id in booked_seats %}
+
+                    <button
+                        type="button"
+                        class="booked-btn"
+                        disabled
+                    >
+                        Booked
+                    </button>
+
+                {% elif seat in seats_in_cart %}
+
+                    <button
+                        type="button"
+                        class="in-cart-btn"
+                        disabled
+                    >
+                        In Cart
+                    </button>
+
+                {% else %}
+
+                    <form
+                        method="post"
+                        action="{% url 'cart:cart_add' seat.id show.id %}"
+                        class="seat-action-form"
+                    >
+                        {% csrf_token %}
+
+                        <input
+                            type="submit"
+                            value="Book Now"
+                            class="book-now-button"
+                        >
                     </form>
-            {% endif %}
 
-        </div>
+                {% endif %}
+
+            </div>
+
+        {% empty %}
+
+            <p class="no-seats">
+                No seats are available for this theatre.
+            </p>
 
         {% endfor %}
 
     </div>
+
+    {% if cart %}
+        <section class="selection-summary">
+
+            <div class="selection-details">
+
+                <p class="selection-label">
+                    Current selection
+                </p>
+
+                <div class="selection-stats">
+
+                    <span>
+                        <strong>{{ cart|length }}</strong>
+                        seat{{ cart|length|pluralize }}
+                    </span>
+
+                    <span class="selection-divider"></span>
+                    
+                    
+
+                    <span>
+                        Total:
+                        <strong>
+                            ₹{{ cart.get_total_cost }}
+                        </strong>
+                    </span>
+
+                </div>
+
+            </div>
+
+            <a
+                href="{% url 'cart:cart_detail' %}"
+                class="view-cart-button"
+            >
+                View Cart
+            </a>
+
+        </section>
+    {% endif %}
 
 </div>
 

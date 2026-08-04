@@ -68,19 +68,30 @@
                     Proceed to Checkout
                 </a>
 
-                <a href="#" class="continue-link">
+                <a
+                    href="{% url 'movies:seat_list' show.slug %}"
+                    class="continue-link"
+                >
                     Continue selecting seats
                 </a>
             </aside>
 
         </div>
+
     {% else %}
         <div class="empty-cart">
-            <h2>Your cart is empty</h2>
-            <p>Select seats from a show to add them to your cart.</p>
-            <a href="{% url 'movies:movie_list' %}">
-                Browse Movies
-            </a>
+            <h2>No seats selected</h2>
+            <p>You can return to the same show and choose different seats.</p>
+
+            {% if show %}
+                <a href="{% url 'movies:seat_list' show.slug %}">
+                    Continue selecting seats
+                </a>
+            {% else %}
+                <a href="{% url 'movies:movie_list' %}">
+                    Browse Movies
+                </a>
+            {% endif %}
         </div>
     {% endif %}
 </section>

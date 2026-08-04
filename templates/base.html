@@ -54,10 +54,20 @@
                     {{ request.user.first_name|default:request.user.username }}
                 </span>
 
+                {% if cart %}
+                    <a href="{% url 'cart:cart_detail' %}" class="cart-link">
+                        🛒 Cart
+                        <span class="cart-count">
+                            {{ cart|length }}
+                        </span>
+                    </a>
+                {% endif %}
+
                 <form action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
                     <button type="submit">Logout</button>
                 </form>
+
             {% else %}
                 <a href="{% url 'login' %}">Login</a>
             {% endif %}

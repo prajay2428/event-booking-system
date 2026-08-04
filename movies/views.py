@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required 
 from movies.models import Movie,Theatre,Seat,Show,Bookings
+from cart.cart import Cart
 # Create your views here.
 
 def movie_list(request):
@@ -24,11 +25,18 @@ def seat_list(request,slug):
     show = get_object_or_404(Show,slug = slug)
     theatre = show.theatre
     seats = Seat.objects.filter(theatre = theatre)
+    cart = Cart(request)
+    seats_in_cart = []
+    for item in cart:
+        seats_in_cart.append(item["seat"])
+    
     return render(request,"movies/seat_list.html",{
         "show" : show,
         "theatre" : theatre,
         "seats" : seats,
-        "booked_seats" : booked_seats
+        "booked_seats" : booked_seats,
+        "cart" : cart,
+        "seats_in_cart" : seats_in_cart
     })
 @login_required
 def book_seat(request,seat_id,show_slug):

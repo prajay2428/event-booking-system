@@ -54,8 +54,8 @@ class Cart:
             del seats[seat_id]
 
         # Optionally reset the entire cart when no seats remain.
-        if not seats:
-            self.cart.clear()
+        # if not seats:
+        #     self.cart.clear()
 
         self.save()
 
@@ -88,5 +88,5 @@ class Cart:
         return len(self.cart.get("seats", {}))
 
     def clear(self):
-        del self.session[settings.CART_SESSION_ID]
+        self.session.pop(settings.CART_SESSION_ID, None)
         self.save()
