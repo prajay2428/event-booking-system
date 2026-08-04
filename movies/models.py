@@ -33,7 +33,7 @@ class Theatre(models.Model):
 class Seat(models.Model):
     theatre = models.ForeignKey(Theatre,on_delete=models.CASCADE,related_name="seats")
     name = models.CharField(max_length=20)
-    price = models.DecimalField(max_digits=4,decimal_places=2)
+    price = models.DecimalField(max_digits=6,decimal_places=2)
 
     class Category(models.TextChoices):
         PREMIUM = "PREMIUM", "Premium"
@@ -78,15 +78,5 @@ class Show(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.time} {self.date}"
+        return f"{self.movie.title} {self.time} {self.date}"
 
-class Bookings(models.Model):
-    movie = models.ForeignKey(Movie,on_delete=models.CASCADE,related_name="bookings")
-    theatre = models.ForeignKey(Theatre,on_delete=models.CASCADE,related_name="bookings")
-    show = models.ForeignKey(Show,on_delete=models.CASCADE,related_name="bookings")
-    seat = models.ForeignKey(Seat,on_delete=models.CASCADE,related_name="bookings")
-    booked_by = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name="bookings")
-
-    def __str__(self):
-
-        return f"{self.show.movie.title} - {self.seat.name}"

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Movie,Show,Bookings,Theatre,Seat
+from .models import Movie,Show,Theatre,Seat
 # Register your models here.
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
@@ -14,11 +14,6 @@ class TheatreAdmin(admin.ModelAdmin):
 @admin.register(Show)
 class ShowAdmin(admin.ModelAdmin):
     list_display=['movie','theatre','date','time','slug']
-
-
-@admin.register(Bookings)
-class BookingAdmin(admin.ModelAdmin):
-    list_display=['movie','theatre','show','seat','booked_by']
 
 
 @admin.register(Seat)
