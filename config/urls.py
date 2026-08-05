@@ -23,6 +23,7 @@ urlpatterns = [
     path('accounts/',include('accounts.urls')),
     path('movies/',include('movies.urls')),
     path('cart/',include('cart.urls')),
+    path('book/', include("booking.urls")),
 ]
 
 if settings.DEBUG:

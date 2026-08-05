@@ -1,0 +1,144 @@
+.confirmation-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 65vh;
+    padding: 30px 0;
+}
+
+.confirmation-card {
+    width: min(620px, 100%);
+    padding: 48px 36px;
+
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.09);
+
+    text-align: center;
+}
+
+.success-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 22px;
+
+    background: #dcfce7;
+    color: #16a34a;
+    border: 3px solid #86efac;
+    border-radius: 50%;
+
+    font-size: 2.3rem;
+    font-weight: 700;
+}
+
+.eyebrow {
+    margin: 0 0 8px;
+    color: #16a34a;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+.confirmation-card h1 {
+    margin: 0 0 14px;
+    color: #111827;
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.confirmation-message {
+    max-width: 480px;
+    margin: 0 auto;
+    color: #64748b;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.booking-reference {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    max-width: 360px;
+    margin: 28px auto 0;
+    padding: 14px 18px;
+
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+
+    color: #64748b;
+}
+
+.booking-reference strong {
+    color: #111827;
+    font-size: 1.1rem;
+}
+
+.confirmation-actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 32px;
+}
+
+.primary-button,
+.secondary-button {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 9px;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+.primary-button {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.primary-button:hover {
+    background: #1d4ed8;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.secondary-button {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+}
+
+.secondary-button:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 560px) {
+    .confirmation-card {
+        padding: 38px 22px;
+    }
+
+    .confirmation-card h1 {
+        font-size: 1.75rem;
+    }
+
+    .confirmation-actions {
+        flex-direction: column;
+    }
+
+    .primary-button,
+    .secondary-button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block extra_css %}
+<link
+    rel="stylesheet"
+    href="{% static 'booking/css/create.css' %}"
+>
+{% endblock %}
+
+{% block content %}
+
+<section class="checkout-page">
+
+    <header class="checkout-header">
+        <p class="eyebrow">Final step</p>
+        <h1>Complete your booking</h1>
+        <p>
+            Review your selected seats and confirm your details.
+        </p>
+    </header>
+
+    <div class="checkout-layout">
+
+        <div class="checkout-form-section">
+            <div class="checkout-card">
+                <h2>Booking details</h2>
+
+                <form method="post" class="checkout-form">
+                    {% csrf_token %}
+
+                    {{ form.non_field_errors }}
+
+                    {% for field in form %}
+                        <div class="form-group">
+                            <label for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                            </label>
+
+                            {{ field }}
+
+                            {% if field.help_text %}
+                                <small class="help-text">
+                                    {{ field.help_text }}
+                                </small>
+                            {% endif %}
+
+                            {% for error in field.errors %}
+                                <p class="field-error">
+                                    {{ error }}
+                                </p>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+
+                    <button type="submit" class="book-button">
+                        Confirm Booking
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <aside class="order-summary">
+            <h2>Booking summary</h2>
+
+            <div class="summary-items">
+                {% for item in cart %}
+                    <div class="summary-item">
+                        <div>
+                            <p class="seat-name">
+                                Seat {{ item.seat.name }}
+                            </p>
+
+                            {% if item.seat.category %}
+                                <p class="seat-category">
+                                    {{ item.seat.category }}
+                                </p>
+                            {% endif %}
+                        </div>
+
+                        <strong>
+                            ₹{{ item.price }}
+                        </strong>
+                    </div>
+                {% empty %}
+                    <p class="empty-message">
+                        No seats have been selected.
+                    </p>
+                {% endfor %}
+            </div>
+
+            <div class="summary-count">
+                <span>Selected seats</span>
+                <span>{{ cart|length }}</span>
+            </div>
+
+            <div class="summary-total">
+                <span>Total</span>
+                <strong>₹{{ cart.get_total_cost }}</strong>
+            </div>
+
+            <p class="payment-note">
+                Your seats will be confirmed after the booking is completed.
+            </p>
+        </aside>
+
+    </div>
+
+</section>
+
+{% endblock %}

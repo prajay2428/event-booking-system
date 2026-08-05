@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Booking Confirmed{% endblock %}
+
+{% block extra_css %}
+<link
+    rel="stylesheet"
+    href="{% static 'booking/css/created.css' %}"
+>
+{% endblock %}
+
+{% block content %}
+
+<section class="confirmation-page">
+
+    <div class="confirmation-card">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <p class="eyebrow">Booking confirmed</p>
+
+        <h1>Thank you for your booking</h1>
+
+        <p class="confirmation-message">
+            Your seats have been booked successfully.
+            You can view the booking details from your bookings page.
+        </p>
+
+        {% if booking %}
+            <div class="booking-reference">
+                <span>Booking number</span>
+                <strong>#{{ booking.id }}</strong>
+            </div>
+        {% endif %}
+
+        <div class="confirmation-actions">
+            <a
+                href="#"
+                class="primary-button"
+            >
+                View My Bookings
+            </a>
+
+            <a
+                href="{% url 'movies:movie_list' %}"
+                class="secondary-button"
+            >
+                Browse Movies
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

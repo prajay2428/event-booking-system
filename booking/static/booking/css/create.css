@@ -1,0 +1,252 @@
+.checkout-page {
+    max-width: 1050px;
+    margin: 20px auto 60px;
+}
+
+.checkout-header {
+    margin-bottom: 32px;
+}
+
+.checkout-header .eyebrow {
+    margin: 0 0 6px;
+    color: #2563eb;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+.checkout-header h1 {
+    margin: 0 0 10px;
+    color: #111827;
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.checkout-header > p:last-child {
+    margin: 0;
+    color: #64748b;
+}
+
+.checkout-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 30px;
+    align-items: start;
+}
+
+.checkout-card,
+.order-summary {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 8px 26px rgba(15, 23, 42, 0.07);
+}
+
+.checkout-card {
+    padding: 28px;
+}
+
+.checkout-card h2,
+.order-summary h2 {
+    margin: 0 0 24px;
+    color: #111827;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group label {
+    color: #374151;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 11px 12px;
+
+    background: #ffffff;
+    color: #111827;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+
+    font: inherit;
+    outline: none;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+}
+
+.help-text {
+    color: #64748b;
+    font-size: 0.78rem;
+}
+
+.field-error,
+.errorlist {
+    margin: 0;
+    padding: 0;
+    color: #dc2626;
+    font-size: 0.82rem;
+    list-style: none;
+}
+
+.book-button {
+    width: 100%;
+    margin-top: 4px;
+    padding: 13px 18px;
+
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 9px;
+
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+.book-button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.book-button:active {
+    transform: translateY(0);
+}
+
+.order-summary {
+    position: sticky;
+    top: 24px;
+    padding: 24px;
+}
+
+.summary-items {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 18px;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+
+    padding: 13px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.summary-item p {
+    margin: 0;
+}
+
+.seat-name {
+    color: #1f2937;
+    font-weight: 700;
+}
+
+.seat-category {
+    margin-top: 3px !important;
+    color: #64748b;
+    font-size: 0.8rem;
+}
+
+.summary-item strong {
+    color: #111827;
+    white-space: nowrap;
+}
+
+.summary-count,
+.summary-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.summary-count {
+    padding: 12px 0;
+    color: #64748b;
+}
+
+.summary-total {
+    margin-top: 4px;
+    padding: 18px 0 8px;
+    color: #111827;
+    border-top: 1px solid #cbd5e1;
+    font-size: 1.1rem;
+}
+
+.summary-total strong {
+    font-size: 1.45rem;
+}
+
+.payment-note {
+    margin: 16px 0 0;
+    padding: 12px;
+
+    background: #eff6ff;
+    color: #1e40af;
+    border-radius: 8px;
+
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.empty-message {
+    color: #64748b;
+}
+
+@media (max-width: 800px) {
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .order-summary {
+        position: static;
+        grid-row: 1;
+    }
+}
+
+@media (max-width: 520px) {
+    .checkout-page {
+        margin-top: 5px;
+    }
+
+    .checkout-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .checkout-card,
+    .order-summary {
+        padding: 20px;
+        border-radius: 12px;
+    }
+}
