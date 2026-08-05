@@ -15,6 +15,7 @@ class Booking(models.Model):
     email = models.EmailField()
     show = models.ForeignKey(Show,on_delete=models.CASCADE,related_name="bookings")
     amount_paid = models.DecimalField(max_digits=6,decimal_places=2)
+    created = models.DateTimeField(auto_now_add= True)
     payment_status = models.CharField(
         max_length=30,
         choices=PaymentStatus.choices,
@@ -26,6 +27,7 @@ class Booking(models.Model):
 
     
 
+
     def __str__(self):
 
         return f"{self.show.movie.title} - {self.id}"
@@ -34,7 +36,13 @@ class Booking(models.Model):
 class BookingSeat(models.Model):
     booking = models.ForeignKey(Booking,on_delete=models.CASCADE,related_name='bookingseat')
     seat = models.ForeignKey(Seat,on_delete=models.CASCADE,related_name='bookingseat')
+    show = models.ForeignKey(Show,on_delete=models.CASCADE,related_name='bookingseat')
     price_paid = models.DecimalField(max_digits=6,decimal_places=2)
+    class Meta:
+        constraints = [models.UniqueConstraint(
+            fields=["show","seat"],
+            name ='unique_show_seat'
+        )]
 
     def __str__(self):
-        return self.seat.name
+        return f"{self.seat.name} - {self.show}"
