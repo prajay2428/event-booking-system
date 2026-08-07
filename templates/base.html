@@ -39,7 +39,7 @@
 
                 {% if request.user.is_authenticated %}
                     <li {% if section == "bookings" %}class="selected"{% endif %}>
-                        <a href="#">
+                        <a href="{% url "booking:my_bookings" %}" >
                             My Bookings
                         </a>
                     </li>

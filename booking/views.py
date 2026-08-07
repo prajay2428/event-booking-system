@@ -82,3 +82,14 @@ def booking_create(request):
             "cart": cart,
         },
     )
+
+@login_required
+def my_bookings(request):
+    user = request.user
+    bookings = Booking.objects.filter(user = user)
+    my_bookings = BookingSeat.objects.filter(booking__in = bookings)
+    return render(request,'booking/my_bookings.html',{
+        "bookings" : bookings,
+        "my_bookings" : my_bookings
+
+    })
