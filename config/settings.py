@@ -31,7 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    
+
+    'rest_framework',
     'accounts.apps.AccountsConfig',
     'cart.apps.CartConfig',
     'movies.apps.MoviesConfig',
@@ -147,3 +148,10 @@ MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
 
 CART_SESSION_ID ='cart'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

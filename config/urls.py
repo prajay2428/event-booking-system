@@ -24,6 +24,7 @@ urlpatterns = [
     path('movies/',include('movies.urls')),
     path('cart/',include('cart.urls')),
     path('book/', include("booking.urls")),
+    path('api/', include('movies.api.urls', namespace = 'api'))
 ]
 
 if settings.DEBUG:
