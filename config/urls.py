@@ -24,7 +24,13 @@ urlpatterns = [
     path('movies/',include('movies.urls')),
     path('cart/',include('cart.urls')),
     path('book/', include("booking.urls")),
-    path('api/', include('movies.api.urls', namespace = 'api'))
+    path('api/', include('movies.api.urls', namespace = 'api')),
+    path('api/accounts/',include('accounts.api.urls')),
+    path('api/cart/',include("cart.api.urls")),
+    path(
+    "api/booking/",
+    include("booking.api.urls")
+),
 ]
 
 if settings.DEBUG:
