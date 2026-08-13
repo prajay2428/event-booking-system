@@ -4,7 +4,7 @@ from django.urls import path
 from . import views
 
 
-app_name = "cart"
+app_name = "cart_api"
 
 urlpatterns = [
     path("", views.CartDetailView.as_view(), name="cart_detail"),
