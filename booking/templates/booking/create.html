@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Checkout{% endblock %}
+{% block title %}Payment{% endblock %}
 
 {% block extra_css %}
 <link
@@ -16,7 +16,7 @@
 
     <header class="checkout-header">
         <p class="eyebrow">Final step</p>
-        <h1>Complete your booking</h1>
+        <h1>Complete your payment</h1>
         <p>
             Review your selected seats and confirm your details.
         </p>
@@ -56,7 +56,7 @@
                     {% endfor %}
 
                     <button type="submit" class="book-button">
-                        Confirm Booking
+                        Pay &amp; Confirm Booking
                     </button>
                 </form>
             </div>
@@ -102,7 +102,7 @@
             </div>
 
             <p class="payment-note">
-                Your seats will be confirmed after the booking is completed.
+                Confirming this booking records the full amount as paid.
             </p>
         </aside>
 

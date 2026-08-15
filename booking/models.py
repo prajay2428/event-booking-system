@@ -5,24 +5,26 @@ from decimal import Decimal
 # Create your models here.
 class Booking(models.Model):
     class PaymentStatus(models.TextChoices):
-        PROCESSING = "processing", "Processing"
         PAID = "paid", "Paid"
-        FAILED = "failed", "Failed"
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='booking')
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length = 50)
     email = models.EmailField()
     show = models.ForeignKey(Show,on_delete=models.CASCADE,related_name="bookings")
-    amount_paid = models.DecimalField(max_digits=6,decimal_places=2)
+    total_amount = models.DecimalField(max_digits=6, decimal_places=2)
     created = models.DateTimeField(auto_now_add= True)
     payment_status = models.CharField(
-        max_length=30,
+        max_length=10,
         choices=PaymentStatus.choices,
+        default=PaymentStatus.PAID,
     )
 
     def get_total_cost(self):
-        return (sum (booking_seat.price_paid for booking_seat in self.bookingseat.all()), Decimal("0.00"))
+        return sum(
+            (booking_seat.price_paid for booking_seat in self.bookingseat.all()),
+            Decimal("0.00"),
+        )
 
 
     

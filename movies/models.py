@@ -5,7 +5,7 @@ from django.conf import settings
 
 class Movie(models.Model):
     title = models.CharField(max_length=50)
-    slug = models.SlugField(blank = True, max_length=60)
+    slug = models.SlugField(blank=True, max_length=60, unique=True)
     poster = models.ImageField(upload_to='posters/%Y/%m/%d/', blank=True)
     description = models.TextField(blank = True)
     director = models.CharField(max_length = 50)
@@ -19,6 +19,21 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.title)[:50] or "movie"
+            slug = base_slug
+            suffix = 2
+
+            while Movie.objects.exclude(pk=self.pk).filter(slug=slug).exists():
+                suffix_text = f"-{suffix}"
+                slug = f"{base_slug[:60 - len(suffix_text)]}{suffix_text}"
+                suffix += 1
+
+            self.slug = slug
+
+        super().save(*args, **kwargs)
 
 class Theatre(models.Model):
     name = models.CharField(max_length = 100)

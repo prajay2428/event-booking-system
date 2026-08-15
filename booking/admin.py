@@ -3,7 +3,7 @@ from .models import Booking,BookingSeat
 # Register your models here.
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display=['user','email','show','amount_paid','payment_status','created']
+    list_display=['user','email','show','total_amount','payment_status','created']
 
 @admin.register(BookingSeat)
 class BookingSeatAdmin(admin.ModelAdmin):

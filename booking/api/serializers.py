@@ -37,7 +37,7 @@ class BookingSerializer(serializers.ModelSerializer):
             "theatre",
             "date",
             "time",
-            "amount_paid",
+            "total_amount",
             "payment_status",
             "created",
             "bookingseat",

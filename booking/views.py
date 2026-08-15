@@ -38,7 +38,7 @@ def booking_create(request):
                     booking = booking_form.save(commit=False)
                     booking.user = user
                     booking.show = show
-                    booking.amount_paid = amount
+                    booking.total_amount = amount
                     booking.payment_status = Booking.PaymentStatus.PAID
                     booking.save()
 
@@ -86,7 +86,9 @@ def booking_create(request):
 @login_required
 def my_bookings(request):
     user = request.user
-    bookings = Booking.objects.filter(user = user)
+    bookings = Booking.objects.filter(user=user).select_related(
+        "show__movie", "show__theatre"
+    ).prefetch_related("bookingseat__seat").order_by("-created")
     my_bookings = BookingSeat.objects.filter(booking__in = bookings)
     return render(request,'booking/my_bookings.html',{
         "bookings" : bookings,

@@ -26,7 +26,11 @@ class MyBookingsView(generics.ListAPIView):
     def get_queryset(self):
         return Booking.objects.filter(
             user=self.request.user
-        )
+        ).select_related(
+            "show__movie", "show__theatre"
+        ).prefetch_related(
+            "bookingseat__seat"
+        ).order_by("-created")
 
 class BookingCreateView(APIView):
     permission_classes = [IsAuthenticated]
@@ -81,7 +85,7 @@ class BookingCreateView(APIView):
                     last_name=serializer.validated_data["last_name"],
                     email=serializer.validated_data["email"],
                     show=show,
-                    amount_paid=amount,
+                    total_amount=amount,
                     payment_status=Booking.PaymentStatus.PAID,
                 )
 

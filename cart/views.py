@@ -1,5 +1,6 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.views.decorators.http import require_POST
+from django.contrib import messages
 from movies.models import Seat,Show
 from .cart import Cart
 
@@ -11,7 +12,10 @@ def cart_add(request,seat_id, show_id):
     cart = Cart(request)
     seat = get_object_or_404(Seat,id = seat_id)
     show = get_object_or_404(Show,id =show_id)
-    cart.add(seat=seat,show=show)
+    try:
+        cart.add(seat=seat, show=show)
+    except ValueError as error:
+        messages.error(request, str(error))
 
     return redirect('movies:seat_list', slug =show.slug)
 

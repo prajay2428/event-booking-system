@@ -15,15 +15,30 @@ class CartDetailView(APIView):
 
     def get(self, request):
         cart = Cart(request)
+        show = None
+        show_id = cart.cart.get("show_id")
+
+        if show_id:
+            show = Show.objects.filter(id=show_id).select_related(
+                "movie", "theatre"
+            ).first()
 
         serializer = CartItemSerializer(
             list(cart),
             many=True
         )
-
         return Response(
             {
                 "items": serializer.data,
+                "show": {
+                    "id": show.id,
+                    "slug": show.slug,
+                    "movie": show.movie.title,
+                    "theatre": show.theatre.name,
+                    "date": show.date,
+                    "time": show.time,
+                } if show else None,
+                "total": cart.get_total_cost(),
             },
             status=status.HTTP_200_OK
         )
@@ -35,7 +50,13 @@ class CartAddView(APIView):
         cart = Cart(request)
         show = get_object_or_404(Show,id = show_id)
         seat = get_object_or_404(Seat,id = seat_id)
-        cart.add(seat=seat, show=show)
+        try:
+            cart.add(seat=seat, show=show)
+        except ValueError as error:
+            return Response(
+                {"message": str(error)},
+                status=status.HTTP_409_CONFLICT,
+            )
 
         return Response(
             {
@@ -56,4 +77,3 @@ class CartRemoveView(APIView):
             {"message" : "item removed successfully",},
             status=status.HTTP_200_OK
         )
-        

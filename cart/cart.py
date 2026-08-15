@@ -18,6 +18,15 @@ class Cart:
         self.cart = cart
 
     def add(self, seat, show):
+        if seat.theatre_id != show.theatre_id:
+            raise ValueError("This seat does not belong to the show's theatre.")
+
+        # Import locally to avoid a module-level circular dependency.
+        from booking.models import BookingSeat
+
+        if BookingSeat.objects.filter(show=show, seat=seat).exists():
+            raise ValueError("This seat has already been booked.")
+
         show_id = str(show.id)
         seat_id = str(seat.id)
         price = str(seat.price)
@@ -53,9 +62,8 @@ class Cart:
         if seat_id in seats:
             del seats[seat_id]
 
-        # Optionally reset the entire cart when no seats remain.
-        # if not seats:
-        #     self.cart.clear()
+        if not seats:
+            self.cart.clear()
 
         self.save()
 
